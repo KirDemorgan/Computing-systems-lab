@@ -1,0 +1,35 @@
+LXI H, 0x002A 
+MVI A, 0
+MOV B, A
+MOV C, A
+MOV D, A
+
+SUM_LOOP:
+	MOV A, B
+	CPI 10
+	JZ END
+
+	MOV A,M
+	JPE EVEN
+
+ODD:
+	MOV A, C
+	ADD M
+	MOV C, A
+	JMP NEXT
+
+EVEN:
+	MOV A, D
+	ADD M
+	MOV D, A
+
+NEXT:
+	INX H
+	INR D
+	JMP SUM_LOOP
+
+END:
+	MOV M, D
+	INX H
+	MOV M, C
+	HLT
